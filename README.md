@@ -1,8 +1,7 @@
-# kivy-test
-Unit testing interface made with cross-platform Kivy framework.
-
 kivy-test
 =========
+
+Unit testing interface made with cross-platform Kivy framework.
 
 Kivy is a [Python](https://www.python.org) framework for the development of
 multi-touch enabled media rich applications. The aim is to allow for quick and
@@ -59,7 +58,7 @@ IRC channel:
 Licence
 -------
 
-As a Kivy application, all Kivy licenses apply to kivy-test.
+As a Kivy application, all Kivy licences apply to kivy-test.
 
 - Kivy is released under the terms of the MIT License. Please refer to the
   LICENSE file.
