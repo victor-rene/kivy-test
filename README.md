@@ -12,6 +12,8 @@ kivy-test is a project to facilitate regression testing and enable new
 contributors to learn Kivy faster and propose safer changes. kivy-test can
 also be used to parse any kind of log file, if you write the parsing rules.
 
+<img align="center" height="256" src="https://raw.githubusercontent.com/victor-rene/kivy-test/master/screenshot/01.png"/>
+
 Goals
 -----
 

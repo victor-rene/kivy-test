@@ -21,15 +21,15 @@ class LoadDialog(Popup):
         self.content = LoadDialogContent(self)
         self.dialog_result = None
         
-    def load(self, directory, file_name, *args):
+    def load(self, *args):
         """ Stores filename. """
-        print directory, file_name
+        directory = self.content.filechooser.path
+        file_name = self.content.filechooser.selection
         if directory and file_name:
             filename = os.path.join(directory, file_name[0])
-            if os.isfile(filename):
+            if os.path.isfile(filename):
                 self.filename = filename
                 self.dialog_result = True
-                print 'dr True'
         self.dismiss()
 
 

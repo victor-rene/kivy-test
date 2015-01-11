@@ -53,6 +53,11 @@ docs/_build/
 # PyBuilder
 target/
 
-# Scripts
+# Windows scripts
 *.bat
 *.cmd
+
+# Nosetests output
+cover/
+.noseids
+results.png

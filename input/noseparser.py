@@ -23,14 +23,19 @@ class NoseParser(object):
         for line in lines:
             self.parse_line(line)
         
-    def parse_line(self):
+    def parse_line(self, line):
         if line.startswith('#'):
+            if line.endswith('ok'):
+                line = self.add_markup_ok(line)
             space = line.index(' ')
             id = line[:space]
-            refs[id] = line
+            self.refs[id] = line[space:]
         else:
             pass
         self.notify('line_parsed')
+    
+    def add_markup_ok(self, line):
+        return line[:-2] + '[color=#00ff00]ok[/color]'
         
     def notify(self, event_name, *args, **kwargs):
         for listener in self.listeners:

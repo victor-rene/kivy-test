@@ -4,6 +4,10 @@
 # cython: profile=False
 
 from kivy.base import runTouchApp
+from kivy.config import Config
+
+Config.set('graphics', 'width', 1200)
+Config.set('graphics', 'height', 900)
 
 from gui.mainwindow import MainWindow
 
