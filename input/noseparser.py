@@ -3,13 +3,16 @@
 # filename: noseparser.py
 # cython: profile=True
 
+from node import Node
+from collections import OrderedDict
+
 
 class NoseParser(object):
     
     def __init__(self, text=None):
         self.text = text
         self.listeners = []
-        self.refs = dict()
+        self.refs = OrderedDict()
         if self.text:
             self.parse_lines(text.split('\n'))
             
@@ -20,24 +23,51 @@ class NoseParser(object):
         self.refs.clear()
         
     def parse_lines(self, lines):
+        nl = []
+        states = []
+        state = None
+        can_process_state = False
         for line in lines:
-            self.parse_line(line)
-        
-    def parse_line(self, line):
-        if line.startswith('#'):
-            if line.endswith('ok'):
-                line = self.add_markup_ok(line)
-            space = line.index(' ')
-            id = line[:space]
-            self.refs[id] = line[space:]
-        else:
-            pass
-        self.notify('line_parsed')
+            if line.startswith('#'):
+                can_process_state = True
+                states.append(state)
+                state = False
+                n = Node()
+                n.parse(line)
+                nl.append((n.unit, n))
+            if can_process_state:
+                if not state: # processing the last state is tricky
+                    state = line.endswith('ok')
+                    can_process_state = False # used to create a bunch of false negative and screenshot
+        states.append(state)
+        del states[0]
+        # print len(nl), nl
+        # print len(states), states
+        n_nodes = len(nl)
+        for i in range(n_nodes):
+            node = nl[i][1]
+            state = states[i]
+            s = ''
+            if state:
+                s = self.add_markup_ok(s)
+            else: s = self.add_markup_nok(s)
+            s += ' ' + self.add_markup_id(node.id) + ' ' + node.name
+                
+            if node.unit not in self.refs:
+                self.refs[node.unit] = [s]
+            else:
+                self.refs[node.unit].append(s)
     
     def add_markup_ok(self, line):
-        return line[:-2] + '[color=#00ff00]ok[/color]'
+        return '[color=#00ff00]ok[/color]'
         
-    def notify(self, event_name, *args, **kwargs):
-        for listener in self.listeners:
-            if event_name in listener.events:
-                getattr(listener, event_name)(*args, **kwargs)
+    def add_markup_nok(self, line):
+        return '[color=#ff0000]nok[/color]'
+        
+    def add_markup_id(self, id):
+        return '[color=#ffff00]%s[/color]' % id
+        
+    # def notify(self, event_name, *args, **kwargs):
+        # for listener in self.listeners:
+            # if event_name in listener.events:
+                # getattr(listener, event_name)(*args, **kwargs)

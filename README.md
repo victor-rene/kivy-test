@@ -12,7 +12,7 @@ kivy-test is a project to facilitate regression testing and enable new
 contributors to learn Kivy faster and propose safer changes. kivy-test can
 also be used to parse any kind of log file, if you write the parsing rules.
 
-<img align="center" height="256" src="https://raw.githubusercontent.com/victor-rene/kivy-test/master/screenshot/01.png"/>
+<img align="center" height="256" src="https://raw.githubusercontent.com/victor-rene/kivy-test/master/screenshot/02.png"/>
 
 Goals
 -----
@@ -22,7 +22,7 @@ Goals
 * Provide syntax highlighting of console output
 * Archive test results in database for future reference
 * Help with user interface test automation (example:
-  [selenium](http://www.seleniumhq.org/)
+  [selenium](http://www.seleniumhq.org/))
 * Create a knowledge base about:
   * Differences between Python 2.7 and 3.x and how code should be written to
     support both languages

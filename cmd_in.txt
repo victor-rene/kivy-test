@@ -1,2 +1,2 @@
-﻿.oO- Heellloooo from Kivy Team -Oo.
-chcp 1252 && run_test.cmd
+﻿cmd /c chcp 1252 && run_all.cmd
+cmd /c chcp 1252 && run_one.cmd

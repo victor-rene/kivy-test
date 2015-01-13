@@ -12,7 +12,7 @@ from kivy.uix.popup import Popup
 from kivy.uix.filechooser import FileChooserListView
 
 
-class LoadDialog(Popup):
+class LoadDialog(Popup): # TODO: Add text_input
     
     def __init__(self, **kwargs):
         super(LoadDialog, self).__init__(**kwargs)
@@ -55,5 +55,3 @@ class LoadDialogContent(BoxLayout):
         self.box_btn.add_widget(self.btn_load)
         self.add_widget(self.filechooser)
         self.add_widget(self.box_btn)
-
-        
