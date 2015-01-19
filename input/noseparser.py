@@ -38,7 +38,7 @@ class NoseParser(object):
             if can_process_state:
                 if not state: # processing the last state is tricky
                     state = line.endswith('ok')
-                    can_process_state = False # used to create a bunch of false negative and screenshot
+                    # can_process_state = False # used to create a bunch of false negative and screenshot
         states.append(state)
         del states[0]
         # print len(nl), nl

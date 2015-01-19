@@ -98,8 +98,13 @@ class MainWindow(RelativeLayout):
             with open(ld.filename) as f:
                 self.data = f.read()
                 self.lines = self.data.split('\n')
+                self.clear_tree()
                 self.build_tree()
                 self.build_cover()
+                
+    def clear_tree(self):
+        for node in self.treeview.root.nodes:
+            self.tree.remove_node(node)
                 
     def build_tree(self):
         if self.parser:
@@ -159,12 +164,13 @@ class MainWindow(RelativeLayout):
         
     def do_scroll(self, wgt, touch):
         # Recevies on_touch_move
-        ry = (touch.dy / self.height) + self.tbl_cover.pos_hint['y']
-        if ry > .3:
-            ry = .3
-        if ry <  1. - self.offset:
-            ry =  1. - self.offset
-        self.tbl_cover.pos_hint = {'x': .5, 'y': ry }
+        if wgt.collide_point(touch.x, touch.y):
+            ry = (touch.dy / self.height) + self.tbl_cover.pos_hint['y']
+            if ry > .3:
+                ry = .3
+            if ry <  1. - self.offset:
+                ry =  1. - self.offset
+            self.tbl_cover.pos_hint = {'x': .5, 'y': ry }
         # if self.tbl_cover.pos_hint
         # self.tbl_cover.do_layout()
 

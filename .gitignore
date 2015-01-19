@@ -62,5 +62,6 @@ cover/
 .noseids
 results.png
 
-# Notes
+# Project files
 notes.txt
+cmd_out.txt

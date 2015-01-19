@@ -1,2 +1,2 @@
-﻿cmd /c chcp 1252 && run_all.cmd
-cmd /c chcp 1252 && run_one.cmd
+cmd /c chcp 1252 && run_all.cmd
+cmd /c chcp 1252 && run_one.cmd "Put path here"
