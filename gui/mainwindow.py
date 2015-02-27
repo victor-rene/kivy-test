@@ -104,7 +104,7 @@ class MainWindow(RelativeLayout):
                 
     def clear_tree(self):
         for node in self.treeview.root.nodes:
-            self.tree.remove_node(node)
+            self.treeview.remove_node(node)
                 
     def build_tree(self):
         if self.parser:
@@ -152,8 +152,8 @@ class MainWindow(RelativeLayout):
         
     def build_tbl_cover(self, lines_data):
         self.tbl_cover.clear_widgets()
-        lines_data = self.sort_by_pct(lines_data)
         # print lines_data
+        lines_data = self.sort_by_pct(lines_data)
         for line_data in lines_data:
             self.tbl_cover.add_widget(ReportCell(data=line_data))
         self.offset = .05 * len(lines_data)
